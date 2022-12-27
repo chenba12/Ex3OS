@@ -1,0 +1,21 @@
+/home/chen/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/chen/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/223.8214.51/bin/ninja/linux/ninja -G Ninja -S /home/chen/CLionProjects/ex3OS -B /home/chen/CLionProjects/ex3OS/cmake-build-debug
+-- The C compiler identification is GNU 11.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+CMake Error at CMakeLists.txt:6 (add_executable):
+  Syntax error in cmake code at
+
+    /home/chen/CLionProjects/ex3OS/CMakeLists.txt:6
+
+  when parsing string
+
+    \u202B\u202Aisort.c
+
+  Invalid character escape '\u'.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/chen/CLionProjects/ex3OS/cmake-build-debug/CMakeFiles/CMakeOutput.log".

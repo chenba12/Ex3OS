@@ -123,9 +123,9 @@ void print_lines(char *str, int lastLine) {
     bzero(line, MAX_LINE);
     for (int i = 2; i < lastLine; i++) {
         getLine(line, i);
-        if (substring(line, str)) {
-            printf("%s\n", line);
-        }
+//        if (substring(line, str)) {
+//            printf("%s\n", line);
+//        }
     }
 }
 
@@ -155,9 +155,9 @@ int main() {
     getWord(searchWord, 0, 0);
     getLine(s, 2);
     getWord(option, 0, 1);
-//    if (option[0] == 'a') {
-//        print_lines(searchWord, lastLine);
-//    }
+    if (option[0] == 'a') {
+        print_lines(searchWord, lastLine);
+    }
 //    if (option[0] == 'b') {
 //        print_similar_words(searchWord, lastLine);
 //    }

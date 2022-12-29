@@ -68,29 +68,6 @@ int substring(char *str1, char *str2) {
         }
     }
     return 0;
-//    size_t str1Len = strlen(str1);
-//    size_t str2Len = strlen(str2);
-//    if (strncmp(str1, str2, str2Len) == 0) return 1;
-//    if (str2Len > str1Len) return 0;
-//    char strTemp[str2Len];
-//    size_t i = 0;
-//    size_t j = 0;
-//    size_t k = 0;
-//    while (i < str1Len) {
-//        if (str1[i] == str2[j]) {
-//            strTemp[k] = str1[i];
-//            k++;
-//            i++;
-//            j++;
-//            continue;
-//        }
-//        i++;
-//        j = 0;
-//        k = 0;
-//    }
-//    strTemp[str2Len] = '\0';
-//    if (strncmp(strTemp, str2, str2Len) == 0) return 1;
-//    return 0;
 }
 
 int similar(char *s, char *t) {
@@ -167,8 +144,8 @@ int main() {
     if (option[0] == 'a') {
         print_lines(searchWord, lastLine);
     }
-//    if (option[0] == 'b') {
-//        print_similar_words(searchWord, lastLine);
-//    }
+    if (option[0] == 'b') {
+        print_similar_words(searchWord, lastLine);
+    }
     return 0;
 }

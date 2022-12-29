@@ -24,7 +24,7 @@ int addToArr() {
 }
 
 int getLine(char s[], int i) {
-    bzero(s, MAX_LINE);
+    memset(s, 0, MAX_LINE);
     int j = 0;
     while (arr[i][j] != '\0') {
         s[j] = arr[i][j];
@@ -61,9 +61,9 @@ int getWord(char w[], int line, int numWord) {
 int substring(char *str1, char *str2) {
     size_t str1Len = strlen(str1);
     size_t str2Len = strlen(str2);
+    if (strncmp(str1, str2, str2Len) == 0) return 1;
     if (str2Len > str1Len) return 0;
-    char strTemp[str2Len + 1];
-    bzero(strTemp, str2Len);
+    char strTemp[str2Len];
     size_t i = 0;
     size_t j = 0;
     size_t k = 0;
@@ -80,7 +80,7 @@ int substring(char *str1, char *str2) {
         k = 0;
     }
     strTemp[str2Len] = '\0';
-    if (strcmp(strTemp, str2) == 0) return 1;
+    if (strncmp(strTemp, str2, str2Len) == 0) return 1;
     return 0;
 }
 
@@ -120,19 +120,19 @@ int similar(char *s, char *t) {
 
 void print_lines(char *str, int lastLine) {
     char line[MAX_LINE];
-    bzero(line, MAX_LINE);
+    memset(line, 0, MAX_LINE);
     for (int i = 2; i < lastLine; i++) {
         getLine(line, i);
-//        if (substring(line, str)) {
-//            printf("%s\n", line);
-//        }
+        if (substring(line, str)) {
+            printf("%s\n", line);
+        }
     }
 }
 
 void print_similar_words(char *str, int lastLine) {
     char currentWord[WORD];
     char line[MAX_LINE];
-    bzero(line, MAX_LINE);
+    memset(line, 0, MAX_LINE);
     int index;
     for (int i = 2; i < lastLine; i++) {
         index = getLine(line, i);

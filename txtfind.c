@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 
 #define MAX_LINE 256
 #define LINES 250
 #define WORD 30
 
-char arr[LINES][MAX_LINE];
-
+char **arr;
 
 int addToArr() {
     int i = 0;
     int j = 0;
-    char c;
+    int c;
     while ((c = fgetc(stdin)) != EOF) {
         if (c != '\n') {
-            arr[i][j] = c;
+            arr[i][j] = (char) c;
             j++;
         } else {
             i++;
@@ -25,7 +25,7 @@ int addToArr() {
 }
 
 int getLine(char s[], int i) {
-    memset(s, 0, MAX_LINE);
+    bzero(s, MAX_LINE);
     int j = 0;
     while (arr[i][j] != '\0') {
         s[j] = arr[i][j];
@@ -35,11 +35,9 @@ int getLine(char s[], int i) {
 }
 
 int getWord(char w[], int line, int numWord) {
-//    memset(w, 0, WORD);
     int j = 0;
     int s = 0;
     if (numWord != 0) {
-
         while (j < MAX_LINE) {
             if (arr[line][j] != '\0' && arr[line][j] != '\n' && arr[line][j] != ' ' && arr[line][j] != '\t') {
                 j++;
@@ -66,7 +64,7 @@ int substring(char *str1, char *str2) {
     size_t str2Len = strlen(str2);
     if (str2Len > str1Len) return 0;
     char strTemp[str2Len];
-    bzero(strTemp,str2Len);
+    bzero(strTemp, str2Len);
     size_t i = 0;
     size_t j = 0;
     size_t k = 0;
@@ -123,7 +121,7 @@ int similar(char *s, char *t) {
 
 void print_lines(char *str) {
     char line[MAX_LINE];
-    for (int i = 2; i < LINES; ++i) {
+    for (int i = 2; i < LINES; i++) {
         getLine(line, i);
         if (substring(line, str)) {
             printf("%s\n", line);
@@ -134,8 +132,8 @@ void print_lines(char *str) {
 void print_similar_words(char *str) {
     char currentWord[WORD];
     char line[MAX_LINE];
-    bzero(currentWord,WORD);
-    bzero(line,MAX_LINE);
+    bzero(currentWord, WORD);
+    bzero(line, MAX_LINE);
     int index = 0;
     for (int i = 2; i < LINES; ++i) {
         index = getLine(line, i);
@@ -150,6 +148,7 @@ void print_similar_words(char *str) {
 }
 
 int main() {
+    arr = (char **) malloc(LINES * MAX_LINE * sizeof(char));
     bzero(arr, LINES * MAX_LINE);
     addToArr();
     char s[MAX_LINE];
@@ -164,5 +163,6 @@ int main() {
     if (option[0] == 'b') {
         print_similar_words(searchWord);
     }
+    free(arr);
     return 0;
 }

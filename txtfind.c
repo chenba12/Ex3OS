@@ -62,7 +62,7 @@ int substring(char *str1, char *str2) {
     size_t str1Len = strlen(str1);
     size_t str2Len = strlen(str2);
     if (str2Len > str1Len) return 0;
-    char strTemp[str2Len+1];
+    char strTemp[str2Len + 1];
     bzero(strTemp, str2Len);
     size_t i = 0;
     size_t j = 0;
@@ -118,8 +118,9 @@ int similar(char *s, char *t) {
     return 0;
 }
 
-void print_lines(char *str,int lastLine) {
+void print_lines(char *str, int lastLine) {
     char line[MAX_LINE];
+    bzero(line, MAX_LINE);
     for (int i = 2; i < lastLine; i++) {
         getLine(line, i);
         if (substring(line, str)) {
@@ -128,7 +129,7 @@ void print_lines(char *str,int lastLine) {
     }
 }
 
-void print_similar_words(char *str,int lastLine) {
+void print_similar_words(char *str, int lastLine) {
     char currentWord[WORD];
     char line[MAX_LINE];
     bzero(line, MAX_LINE);
@@ -147,18 +148,18 @@ void print_similar_words(char *str,int lastLine) {
 
 int main() {
     bzero(arr, LINES * MAX_LINE);
-    int lastLine=addToArr();
+    int lastLine = addToArr();
     char s[MAX_LINE];
     char searchWord[WORD];
     char option[1];
     getWord(searchWord, 0, 0);
     getLine(s, 2);
     getWord(option, 0, 1);
-//    if (option[0] == 'a') {
-//        print_lines(searchWord,lastLine);
-//    }
-//    if (option[0] == 'b') {
-//        print_similar_words(searchWord,lastLine);
-//    }
+    if (option[0] == 'a') {
+        print_lines(searchWord, lastLine);
+    }
+    if (option[0] == 'b') {
+        print_similar_words(searchWord, lastLine);
+    }
     return 0;
 }

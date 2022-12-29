@@ -155,11 +155,11 @@ int main() {
     getWord(searchWord, 0, 0);
     getLine(s, 2);
     getWord(option, 0, 1);
-    if (option[0] == 'a') {
-        print_lines(searchWord, lastLine);
-    }
-    if (option[0] == 'b') {
-        print_similar_words(searchWord, lastLine);
-    }
+//    if (option[0] == 'a') {
+//        print_lines(searchWord, lastLine);
+//    }
+//    if (option[0] == 'b') {
+//        print_similar_words(searchWord, lastLine);
+//    }
     return 0;
 }

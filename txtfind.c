@@ -5,12 +5,15 @@
 #define MAX_LINE 256
 #define LINES 250
 #define WORD 30
+//global arr that holds the input text
 char arr[LINES][MAX_LINE];
 
+//add the input text to the arr by arr[lines][characters]
 int addToArr() {
     int i = 0;
     int j = 0;
     int c;
+    //get chars from the input stream one by one
     while ((c = fgetc(stdin)) != EOF) {
         if (c != '\n') {
             arr[i][j] = (char) c;
@@ -23,6 +26,7 @@ int addToArr() {
     return i;
 }
 
+//get a line from arr by the index i
 int getLine(char s[], int i) {
     memset(s, 0, MAX_LINE);
     int j = 0;
@@ -33,9 +37,11 @@ int getLine(char s[], int i) {
     return j;
 }
 
+//get a specific word from the line number "line"
 int getWord(char w[], int line, int numWord) {
     int j = 0;
     int s = 0;
+    //search for the right word
     if (numWord != 0) {
         while (j < MAX_LINE) {
             if (arr[line][j] != '\0' && arr[line][j] != '\n' && arr[line][j] != ' ' && arr[line][j] != '\t') {
@@ -50,6 +56,7 @@ int getWord(char w[], int line, int numWord) {
         }
     }
     s = 0;
+    //add the word to w
     while (arr[line][j] != '\0' && arr[line][j] != '\n' && arr[line][j] != ' ' && arr[line][j] != '\t') {
         w[s] = arr[line][j];
         j++;
@@ -58,6 +65,7 @@ int getWord(char w[], int line, int numWord) {
     return s;
 }
 
+//check length of a string
 size_t checkLen(const char *str) {
     int ptr = 0;
     size_t strLen = 0;
@@ -68,6 +76,7 @@ size_t checkLen(const char *str) {
     return strLen;
 }
 
+//checks if str1 contains str2
 int substring(char *str1, char *str2) {
     size_t str1Len = checkLen(str1);
     size_t str2Len = checkLen(str2);
@@ -80,7 +89,7 @@ int substring(char *str1, char *str2) {
     return 0;
 }
 
-
+//checks if s is similar to t with max 1 character different
 int similar(char *s, char *t) {
     size_t sLen = strlen(s);
     size_t tLen = strlen(t);
@@ -115,6 +124,7 @@ int similar(char *s, char *t) {
     return 0;
 }
 
+//print the lines that contains str
 void print_lines(char *str, int lastLine) {
     char *line = (char *) malloc(MAX_LINE * sizeof(char));
     memset(line, 0, MAX_LINE);
@@ -127,6 +137,7 @@ void print_lines(char *str, int lastLine) {
     free(line);
 }
 
+//print all the words that are similar to str from each line in the arr
 void print_similar_words(char *str, int lastLine) {
     char currentWord[WORD];
     char line[MAX_LINE];
@@ -147,12 +158,10 @@ void print_similar_words(char *str, int lastLine) {
 int main() {
     memset(arr, 0, sizeof arr);
     int lastLine = addToArr();
-    char s[MAX_LINE];
     char *searchWord=(char *) malloc(WORD * sizeof(char));
     memset(searchWord, 0, WORD);
     char *option=(char *) malloc(WORD * sizeof(char));
     getWord(searchWord, 0, 0);
-    getLine(s, 2);
     getWord(option, 0, 1);
     if (option[0] == 'a') {
         print_lines(searchWord, lastLine);

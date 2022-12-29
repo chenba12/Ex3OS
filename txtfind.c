@@ -147,7 +147,7 @@ void print_similar_words(char *str, int lastLine) {
 }
 
 int main() {
-    bzero(arr, LINES * MAX_LINE);
+    memset(arr, 0, sizeof arr);
     int lastLine = addToArr();
     char s[MAX_LINE];
     char searchWord[WORD];

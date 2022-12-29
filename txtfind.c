@@ -93,7 +93,7 @@ int similar(char *s, char *t) {
     size_t flag = 99;
     while (i < sLen) {
         if (j == tLen) {
-            flag = i++;
+            flag = i;
             break;
         }
         if (s[i] != t[j]) {
@@ -132,7 +132,7 @@ void print_similar_words(char *str,int lastLine) {
     char currentWord[WORD];
     char line[MAX_LINE];
     bzero(line, MAX_LINE);
-    int index = 0;
+    int index;
     for (int i = 2; i < lastLine; i++) {
         index = getLine(line, i);
         for (int j = 0; j < index; j++) {
@@ -154,11 +154,11 @@ int main() {
     getWord(searchWord, 0, 0);
     getLine(s, 2);
     getWord(option, 0, 1);
-    if (option[0] == 'a') {
-        print_lines(searchWord,lastLine);
-    }
-    if (option[0] == 'b') {
-        print_similar_words(searchWord,lastLine);
-    }
+//    if (option[0] == 'a') {
+//        print_lines(searchWord,lastLine);
+//    }
+//    if (option[0] == 'b') {
+//        print_similar_words(searchWord,lastLine);
+//    }
     return 0;
 }

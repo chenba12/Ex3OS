@@ -3,11 +3,8 @@ CFLAGS = -Wall -g
 .PHONY: all clean
 all: isort txtfind
 
-txtfind.o: txtfind.c
-	$(CC) $(CFLAGS) -c txtfind.c
-
 isort: isort.o
-	$(CC) $(CFLAGS) isort.o -o isort
+	$(CC) $(CFLAGS) isort.o -o isort -lm
 
 txtfind: txtfind.o
 	$(CC) $(CFLAGS) txtfind.o -o txtfind -lm

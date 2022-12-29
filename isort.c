@@ -9,10 +9,11 @@ void printArray(const int arr[], int n);
 void insertion_sort(int *arr, int len);
 
 int main() {
-    int arr[arrLen];
-    for (int i = 0; i < arrLen; ++i) {
-        scanf("%d", &arr[i]);
-    }
+    printf("hey");
+//    int arr[arrLen];
+//    for (int i = 0; i < arrLen; ++i) {
+//        scanf("%d", &arr[i]);
+//    }
 }
 
 void shift_element(int *arr, int i) {

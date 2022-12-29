@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
 
 #define MAX_LINE 256
 #define LINES 250
 #define WORD 30
 
-char **arr;
+char arr[LINES][MAX_LINE];
 
 int addToArr() {
     int i = 0;
@@ -63,7 +62,7 @@ int substring(char *str1, char *str2) {
     size_t str1Len = strlen(str1);
     size_t str2Len = strlen(str2);
     if (str2Len > str1Len) return 0;
-    char strTemp[str2Len];
+    char strTemp[str2Len+1];
     bzero(strTemp, str2Len);
     size_t i = 0;
     size_t j = 0;
@@ -123,6 +122,7 @@ void print_lines(char *str) {
     char line[MAX_LINE];
     for (int i = 2; i < LINES; i++) {
         getLine(line, i);
+        printf("i is %d\n", i);
         if (substring(line, str)) {
             printf("%s\n", line);
         }
@@ -132,13 +132,12 @@ void print_lines(char *str) {
 void print_similar_words(char *str) {
     char currentWord[WORD];
     char line[MAX_LINE];
-    bzero(currentWord, WORD);
     bzero(line, MAX_LINE);
     int index = 0;
     for (int i = 2; i < LINES; ++i) {
         index = getLine(line, i);
         for (int j = 0; j < index; ++j) {
-            memset(currentWord, 0, WORD);
+            bzero(currentWord, WORD);
             getWord(currentWord, i, j);
             if (similar(currentWord, str)) {
                 printf("%s\n", currentWord);
@@ -148,7 +147,6 @@ void print_similar_words(char *str) {
 }
 
 int main() {
-    arr = (char **) malloc(LINES * MAX_LINE * sizeof(char));
     bzero(arr, LINES * MAX_LINE);
     addToArr();
     char s[MAX_LINE];
@@ -163,6 +161,5 @@ int main() {
     if (option[0] == 'b') {
         print_similar_words(searchWord);
     }
-    free(arr);
     return 0;
 }

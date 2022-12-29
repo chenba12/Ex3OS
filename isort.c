@@ -9,7 +9,6 @@ void printArray(const int arr[], int n);
 void insertion_sort(int *arr, int len);
 
 int main() {
-
     int arr[arrLen];
     for (int i = 0; i < arrLen; ++i) {
         scanf("%d", &arr[i]);

@@ -62,7 +62,7 @@ int substring(char *str1, char *str2) {
     size_t str1Len = strlen(str1);
     size_t str2Len = strlen(str2);
     if (str2Len > str1Len) return 0;
-    char strTemp[str2Len];
+    char strTemp[str2Len+1];
     bzero(strTemp, str2Len);
     size_t i = 0;
     size_t j = 0;
@@ -133,9 +133,9 @@ void print_similar_words(char *str,int lastLine) {
     char line[MAX_LINE];
     bzero(line, MAX_LINE);
     int index = 0;
-    for (int i = 2; i < lastLine; ++i) {
+    for (int i = 2; i < lastLine; i++) {
         index = getLine(line, i);
-        for (int j = 0; j < index; ++j) {
+        for (int j = 0; j < index; j++) {
             bzero(currentWord, WORD);
             getWord(currentWord, i, j);
             if (similar(currentWord, str)) {

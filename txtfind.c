@@ -26,19 +26,21 @@ int addToArr() {
     return i;
 }
 
-//get a line from arr by the index i
+//get a line from arr by the index i and returns how many words are in that line
 int getLine(char s[], int i) {
     memset(s, 0, MAX_LINE);
     int j = 0;
+    int words = 0;
     while (arr[i][j] != '\0') {
+        if (arr[i][j] == ' ' || arr[i][j] == '\t' || arr[i][j] == '\n') words++;
         s[j] = arr[i][j];
         j++;
     }
-    return j;
+    return words+1;
 }
 
 //get a specific word from the line number "line"
-int getWord(char w[], int line, int numWord) {
+void getWord(char w[], int line, int numWord) {
     int j = 0;
     int s = 0;
     //search for the right word
@@ -62,7 +64,6 @@ int getWord(char w[], int line, int numWord) {
         j++;
         s++;
     }
-    return s;
 }
 
 //check length of a string
@@ -142,11 +143,11 @@ void print_similar_words(char *str, int lastLine) {
     char currentWord[WORD];
     char line[MAX_LINE];
     memset(line, 0, MAX_LINE);
-    int index;
+    int amountOfWords;
     for (int i = 2; i < lastLine; i++) {
-        index = getLine(line, i);
-        for (int j = 0; j < index; j++) {
-            bzero(currentWord, WORD);
+        amountOfWords = getLine(line, i);
+        for (int j = 0; j < amountOfWords; j++) {
+            memset(currentWord, 0, sizeof(currentWord));
             getWord(currentWord, i, j);
             if (similar(currentWord, str)) {
                 printf("%s\n", currentWord);
@@ -158,9 +159,9 @@ void print_similar_words(char *str, int lastLine) {
 int main() {
     memset(arr, 0, sizeof arr);
     int lastLine = addToArr();
-    char *searchWord=(char *) malloc(WORD * sizeof(char));
+    char *searchWord = (char *) malloc(WORD * sizeof(char));
     memset(searchWord, 0, WORD);
-    char *option=(char *) malloc(WORD * sizeof(char));
+    char *option = (char *) malloc(WORD * sizeof(char));
     getWord(searchWord, 0, 0);
     getWord(option, 0, 1);
     if (option[0] == 'a') {
